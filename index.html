@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic-Free India - Awareness Campaign</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4CAF50;
+            --accent-color: #8BC34A;
+            --dark-color: #1B5E20;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --card-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url("{{ url_for('static', filename='uploads/oip.jpeg') }}") center/cover no-repeat;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            animation: slideInDown 1s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        nav a i {
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .hero img:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        /* Content Sections */
+        .section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 3rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:nth-child(even) {
+            flex-direction: row-reverse;
+            background-color: white;
+            border-radius: var(--card-radius);
+            margin: 2rem auto;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-text {
+            flex: 1;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .section-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .section img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .section img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Info Cards Grid */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .info-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 4px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .info-card:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .info-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Call to Action Boxes */
+        .content-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-box {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            padding: 2rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .content-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-box:nth-child(1) { transition-delay: 0.1s; }
+        .content-box:nth-child(2) { transition-delay: 0.2s; }
+        .content-box:nth-child(3) { transition-delay: 0.3s; }
+
+        .content-box:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .content-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 4px solid white;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .content-box:hover img {
+            transform: rotate(15deg);
+        }
+
+        .content-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-box p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Video Section */
+        .video-container {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-container h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+            margin: 0 0.5rem;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero, .section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            .video-container iframe {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .container, .content-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plastic-Free India</h1>
+        <p>Join the movement for a cleaner, greener future</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{{ url_for('upload') }}"><i class="fas fa-upload"></i> Upload</a></li>
+            <li><a href="{{ url_for('user_dashboard') }}"><i class="fas fa-store"></i> Marketplace</a></li>
+            <li><a href="{{ url_for('resources') }}" class="active"><i class="fas fa-book"></i> Resources</a></li>
+            <li><a href="{{ url_for('news') }}"><i class="fas fa-newspaper"></i> News</a></li>
+            <li><a href="{{ url_for('stories') }}"><i class="fas fa-star"></i> Stories</a></li>
+            <li><a href="{{ url_for('events') }}"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Say No to Plastic!</h1>
+            <p>Join the revolution for a cleaner, greener future</p>
+            <a href="#take-action" class="btn">Take Action Now</a>
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='uploads/ima.jpeg') }}" alt="Plastic-Free India">
+        </div>
+    </section>
+
+    <section class="section" id="problem">
+        <div class="section-text">
+            <h2>Why is Plastic Pollution a Problem?</h2>
+            <p>Plastic waste is choking our oceans, harming wildlife, and polluting our environment. Every year, millions of tons of plastic end up in landfills and oceans, taking centuries to decompose while releasing harmful chemicals.</p>
+            <p>The average person consumes about 5 grams of plastic each week through food and water - equivalent to a credit card's worth of microplastics entering our bodies.</p>
+        </div>
+        <div class="section-image">
+            <img src="{{ url_for('static', filename='uploads/download.jpeg') }}" alt="Plastic Pollution">
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="info-card" id="mission">
+            <img src="{{ url_for('static', filename='uploads/target-icon.png') }}" alt="Mission">
+            <h3>Our Mission</h3>
+            <p>To eliminate plastic pollution by promoting sustainable alternatives and educating communities across India about responsible consumption.</p>
+        </div>
+
+        <div class="info-card" id="impact">
+            <img src="{{ url_for('static', filename='uploads/chart-icon.png') }}" alt="Impact">
+            <h3>Impact Statistics</h3>
+            <p>India generates 9.46 million tons of plastic waste annually. Only 60% gets recycled, leaving massive amounts polluting our environment.</p>
+        </div>
+
+        <div class="info-card" id="regulations">
+            <img src="{{ url_for('static', filename='uploads/law-icon.png') }}" alt="Regulations">
+            <h3>Government Action</h3>
+            <p>India has banned specific single-use plastics. Many states have implemented extended producer responsibility policies for plastic waste.</p>
+        </div>
+    </div>
+
+    <section class="section" id="solutions">
+        <div class="section-image">
+            <img src="{{ url_for('static', filename='uploads/solutions.jpg') }}" alt="Solutions">
+        </div>
+        <div class="section-text">
+            <h2>Sustainable Alternatives</h2>
+            <p>Transitioning away from plastic is easier than you think. Here are practical alternatives:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>Carry reusable cloth bags for shopping</li>
+                <li>Use stainless steel or bamboo straws</li>
+                <li>Choose glass or metal containers for storage</li>
+                <li>Opt for compostable packaging materials</li>
+                <li>Support brands using biodegradable materials</li>
+            </ul>
+            <a href="{{ url_for('resources') }}" class="btn">Learn More Alternatives</a>
+        </div>
+    </section>
+
+    <div class="content-row">
+        <div class="content-box">
+            <img src="{{ url_for('static', filename='uploads/reduce-icon.png') }}" alt="Reduce">
+            <h2>Reduce Plastic Waste</h2>
+            <p>Start by cutting down single-use plastics in your daily routine. Small changes make a big difference!</p>
+            <a href="#" class="btn">Action Tips</a>
+        </div>
+        <div class="content-box">
+            <img src="{{ url_for('static', filename='uploads/recycle-icon.png') }}" alt="Recycle">
+            <h2>Recycle & Reuse</h2>
+            <p>Proper waste segregation and supporting recycling initiatives can dramatically reduce environmental impact.</p>
+            <a href="#" class="btn">Recycling Guide</a>
+        </div>
+        <div class="content-box">
+            <img src="{{ url_for('static', filename='uploads/educate-icon.png') }}" alt="Educate">
+            <h2>Spread Awareness</h2>
+            <p>Educate your community about plastic pollution through campaigns, social media, and local events.</p>
+            <a href="#" class="btn">Get Resources</a>
+        </div>
+    </div>
+
+    <section class="section" id="success-stories">
+        <div class="section-text">
+            <h2>Success Stories</h2>
+            <p>Across India, communities and businesses are leading the change:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>Sikkim - First state to ban plastic bottles and styrofoam</li>
+                <li>Kannur - India's first plastic-free district</li>
+                <li>Mumbai - Reduced plastic waste by 90% at major festivals</li>
+                <li>Chennai - Successful beach cleanup initiatives</li>
+            </ul>
+            <a href="{{ url_for('stories') }}" class="btn">Read More Stories</a>
+        </div>
+        <div class="section-image">
+            <img src="{{ url_for('static', filename='uploads/success.jpg') }}" alt="Success Stories">
+        </div>
+    </section>
+
+    <div class="video-container">
+        <h2>Our Campaign in Action</h2>
+        <iframe src="https://www.youtube.com/embed/lYghtRPH4Jg" title="Plastic-Free India Campaign" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <section class="footer">
+        <p>Join us in creating a plastic-free India</p>
+        <p>Contact: <a href="mailto:info@plasticfreeindia.org">info@plasticfreeindia.org</a> | Phone: +91 9876543210</p>
+        <div class="social-links">
+            <a href="https://facebook.com/plasticfreeindia" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/plasticfreeindia" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/plasticfreeindia" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/plasticfreeindia" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://linkedin.com/company/plasticfreeindia" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p>&copy; 2023 Plastic-Free India. All rights reserved.</p>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .info-card, .content-box').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    window.location.href = this.href;
+                }
+            });
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.info-card, .content-box').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
+            });
+            card.addEventListener('mouseleave', function() {
+                if (this.classList.contains('visible')) {
+                    this.style.transform = 'translateY(0)';
+                } else {
+                    this.style.transform = 'translateY(50px)';
+                }
+                this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Plastic-Free Marketplace</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4CAF50;
+            --accent-color: #8BC34A;
+            --dark-color: #1B5E20;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #ffffff;
+            --error-color: #f44336;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .login-container h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .login-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+            background-color: white;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 2.5rem;
+            color: #777;
+            font-size: 1rem;
+        }
+
+        select.form-control {
+            padding-left: 1rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23777' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--dark-color), #3ab7e5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            color: var(--error-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem;
+            background-color: #ffebee;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--error-color);
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .register-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+            color: var(--dark-color);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 2.5rem;
+            cursor: pointer;
+            color: #777;
+            font-size: 1rem;
+            z-index: 2;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .social-login {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .social-login p {
+            position: relative;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .social-login p::before {
+            left: 0;
+        }
+
+        .social-login p::after {
+            right: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .facebook {
+            background: #3b5998;
+        }
+
+        .google {
+            background: #db4437;
+        }
+
+        .twitter {
+            background: #1da1f2;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1.5rem;
+            }
+            
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-control {
+                padding: 0.7rem 1rem 0.7rem 2.2rem;
+            }
+            
+            .input-icon {
+                left: 0.8rem;
+                top: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2><i class="fas fa-leaf"></i> Welcome Back</h2>
+
+        {% if error %}
+            <div class="error">
+                <i class="fas fa-exclamation-circle"></i> {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Account Type</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="user">Eco Shopper</option>
+                    <option value="seller">Eco Seller</option>
+                    <option value="admin">Eco Administrator</option>
+                </select>
+            </div>
+
+            <div class="login-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <div class="forgot-password">
+                    <a href="/forgot-password">Forgot password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </form>
+
+        <div class="social-login">
+            <p>Or login with</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon facebook" title="Login with Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon google" title="Login with Google">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#" class="social-icon twitter" title="Login with Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="register-link">
+            <p>New to our eco-community? <a href="register"><i class="fas fa-user-plus"></i> Create account</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!username) {
+                alert('Please enter your username');
+                e.preventDefault();
+            }
+            
+            if (!password) {
+                alert('Please enter your password');
+                e.preventDefault();
+            }
+        });
+
+        // Add animation to social icons
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.1)';
+            });
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

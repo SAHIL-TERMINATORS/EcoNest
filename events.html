@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic-Free India - Events</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4CAF50;
+            --accent-color: #8BC34A;
+            --dark-color: #1B5E20;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --card-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        nav ul li a i {
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        /* Event Cards */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .event {
+            background: white;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .event:nth-child(1) { animation-delay: 0.1s; }
+        .event:nth-child(2) { animation-delay: 0.2s; }
+        .event:nth-child(3) { animation-delay: 0.3s; }
+        .event:nth-child(4) { animation-delay: 0.4s; }
+        .event:nth-child(5) { animation-delay: 0.5s; }
+
+        .event:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .event:hover .event-image img {
+            transform: scale(1.05);
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .event p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .event-location i {
+            color: var(--primary-color);
+        }
+
+        .event-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .event-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .past .event-tag {
+            background: #666;
+        }
+
+        .upcoming .event-tag {
+            background: var(--accent-color);
+        }
+
+        /* Filter Controls */
+        .event-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav ul li a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-filters {
+                flex-direction: column;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plastic-Free India Events</h1>
+        <p>Join our movement through these impactful events</p>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('resources') }}"><i class="fas fa-book"></i> Resources</a></li>
+                <li><a href="{{ url_for('news') }}"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="{{ url_for('stories') }}"><i class="fas fa-star"></i> Stories</a></li>
+                <li><a href="{{ url_for('events') }}" class="active"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></li>
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="event-filters">
+            <button class="filter-btn active" data-filter="all">All Events</button>
+            <button class="filter-btn" data-filter="past">Past Events</button>
+            <button class="filter-btn" data-filter="upcoming">Upcoming Events</button>
+        </div>
+
+        <section id="past-events" class="past">
+            <h2><i class="fas fa-history"></i> Past Events (2020-2024)</h2>
+
+            <div class="events-container">
+                <!-- Event 1 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/ban-event.jpg') }}" alt="Single-Use Plastic Ban">
+                    </div>
+                    <span class="event-tag">Completed</span>
+                    <div class="event-content">
+                        <h3>India's Ban on Single-Use Plastics</h3>
+                        <span class="event-date">July 1, 2022</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Nationwide Implementation
+                        </div>
+                        <p>India implemented a nationwide ban on 19 single-use plastic items including cutlery, straws, and packaging films to combat plastic pollution.</p>
+                        <div class="event-actions">
+                            <a href="https://www.parisar.org/parisar-in-media/blogs/plastic-free-july-and-its-relevance-throughout-the-year" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Learn More
+                            </a>
+                            <span class="event-stats">
+                                <i class="fas fa-users"></i> 1.3B+ Impacted
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/recycling-event.jpg') }}" alt="Plastics Recycling Show">
+                    </div>
+                    <span class="event-tag">Completed</span>
+                    <div class="event-content">
+                        <h3>Plastics Recycling Show India 2024</h3>
+                        <span class="event-date">Dec 4-6, 2024</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Mumbai, India
+                        </div>
+                        <p>The inaugural Plastics Recycling Show India brought together industry leaders to showcase innovations in plastics recycling and circular economy solutions.</p>
+                        <div class="event-actions">
+                            <a href="https://recyclinginside.com/events/plastics-recycling-show-india-2024/" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Learn More
+                            </a>
+                            <span class="event-stats">
+                                <i class="fas fa-users"></i> 5,000+ Attendees
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/jal-utsav.jpg') }}" alt="Jal Utsav">
+                    </div>
+                    <span class="event-tag">Completed</span>
+                    <div class="event-content">
+                        <h3>Jal Utsav 2023</h3>
+                        <span class="event-date">Nov 15-25, 2023</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Dudhala, Gujarat
+                        </div>
+                        <p>India's first carbon-neutral festival focused on water conservation and sustainable practices, with a strong emphasis on reducing plastic waste.</p>
+                        <div class="event-actions">
+                            <a href="https://en.wikipedia.org/wiki/Jal_Utsav" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Learn More
+                            </a>
+                            <span class="event-stats">
+                                <i class="fas fa-users"></i> 50,000+ Visitors
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/race-campaign.jpg') }}" alt="RACE Campaign">
+                    </div>
+                    <span class="event-tag">Completed</span>
+                    <div class="event-content">
+                        <h3>RACE Campaign for Plastic-Free UP</h3>
+                        <span class="event-date">2023</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Uttar Pradesh
+                        </div>
+                        <p>The RACE (Reduction, Awareness, Circular, Engagement) campaign addressed plastic pollution in Uttar Pradesh through innovative circular economy solutions.</p>
+                        <div class="event-actions">
+                            <a href="https://www.giz.de/de/downloads/giz-2023-en-RACE-campaign-for-single-use-plastic-%28SUP%29-free-uttar%20pradesh-report.pdf" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Report
+                            </a>
+                            <span class="event-stats">
+                                <i class="fas fa-recycle"></i> 100+ Initiatives
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 5 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/pfjuly.jpg') }}" alt="Plastic Free July">
+                    </div>
+                    <span class="event-tag">Annual</span>
+                    <div class="event-content">
+                        <h3>Plastic Free July</h3>
+                        <span class="event-date">July 2024</span>
+                        <div class="event-location">
+                            <i class="fas fa-globe"></i> Global Movement
+                        </div>
+                        <p>An annual global campaign that provides resources and ideas to help people reduce single-use plastic waste in their daily lives.</p>
+                        <div class="event-actions">
+                            <a href="https://www.plasticfreejuly.org/" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Join Now
+                            </a>
+                            <span class="event-stats">
+                                <i class="fas fa-users"></i> 100M+ Participants
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="upcoming-events" class="upcoming">
+            <h2><i class="fas fa-calendar-check"></i> Upcoming Events (2025-2029)</h2>
+
+            <div class="events-container">
+                <!-- Event 1 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/putech.jpg') }}" alt="PU TECH 2025">
+                    </div>
+                    <span class="event-tag">Register Now</span>
+                    <div class="event-content">
+                        <h3>PU TECH 2025</h3>
+                        <span class="event-date">Apr 9-11, 2025</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Noida, India
+                        </div>
+                        <p>International exhibition and conference for the polyurethane industry, focusing on sustainable materials and recycling innovations.</p>
+                        <div class="event-actions">
+                            <a href="https://www.plasticportal.eu/en/pu-tech-2025/cik-2006" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Details
+                            </a>
+                            <a href="#" class="btn" style="background: #ff6f61;">
+                                <i class="fas fa-ticket-alt"></i> Register
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/kumbh.jpg') }}" alt="Mahakumbh Mela">
+                    </div>
+                    <span class="event-tag">Volunteer</span>
+                    <div class="event-content">
+                        <h3>Mahakumbh Mela 2025</h3>
+                        <span class="event-date">2025</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Prayagraj, India
+                        </div>
+                        <p>The Mahakumbh Mela aims to be an eco-friendly and plastic-free event, promoting sustainable practices during one of the world's largest religious gatherings.</p>
+                        <div class="event-actions">
+                            <a href="https://www.thehindu.com/news/national/maha-kumbh-mela-2025-to-be-plastic-free/article66123495.ece" class="btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Learn More
+                            </a>
+                            <a href="#" class="btn" style="background: #8A2BE2;">
+                                <i class="fas fa-hands-helping"></i> Volunteer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="{{ url_for('static', filename='uploads/cleanup-drive.jpg') }}" alt="National Cleanup Day">
+                    </div>
+                    <span class="event-tag">Join Us</span>
+                    <div class="event-content">
+                        <h3>National Plastic Cleanup Day 2025</h3>
+                        <span class="event-date">Sep 21, 2025</span>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Nationwide
+                        </div>
+                        <p>Join thousands of volunteers across India for our annual cleanup drive targeting plastic waste in communities, beaches, and waterways.</p>
+                        <div class="event-actions">
+                            <a href="#" class="btn">
+                                <i class="fas fa-info-circle"></i> Locations
+                            </a>
+                            <a href="#" class="btn" style="background: #4CAF50;">
+                                <i class="fas fa-users"></i> Organize
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Join our movement for a plastic-free India</p>
+        <p>Contact us at <a href="mailto:events@plasticfreeindia.org">events@plasticfreeindia.org</a></p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2023 Plastic-Free India. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Filter events
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                
+                if (filter === 'all') {
+                    document.querySelectorAll('.event').forEach(event => {
+                        event.style.display = 'block';
+                    });
+                } else {
+                    document.querySelectorAll('.event').forEach(event => {
+                        event.style.display = 'none';
+                    });
+                    document.querySelectorAll(`.${filter} .event`).forEach(event => {
+                        event.style.display = 'block';
+                    });
+                }
+            });
+        });
+
+        // Animate events as they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.event').forEach(event => {
+            observer.observe(event);
+        });
+
+        // Add hover class to events
+        document.querySelectorAll('.event').forEach(event => {
+            event.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
+            });
+            event.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>

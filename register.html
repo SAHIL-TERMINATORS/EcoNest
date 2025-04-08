@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Plastic-Free India</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2f80ed;
+            --secondary-color: #56ccf2;
+            --success-color: #4CAF50;
+            --error-color: #f44336;
+            --light-color: #ffffff;
+            --dark-color: #333333;
+            --gray-color: #e0e0e0;
+            --border-radius: 10px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .register-container {
+            background-color: var(--light-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+        }
+
+        .register-container h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .register-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 1px solid var(--gray-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.2);
+            background-color: var(--light-color);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 2.5rem;
+            color: #777;
+            font-size: 1rem;
+        }
+
+        select.form-control {
+            padding-left: 1rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23777' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #1c60c7, #3ab7e5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(47, 128, 237, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+            color: #1c60c7;
+        }
+
+        /* Flash messages */
+        .flash {
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .flash.error {
+            background-color: #ffebee;
+            color: var(--error-color);
+            border-left: 4px solid var(--error-color);
+        }
+
+        .flash.success {
+            background-color: #e8f5e9;
+            color: var(--success-color);
+            border-left: 4px solid var(--success-color);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 2.5rem;
+            cursor: pointer;
+            color: #777;
+            font-size: 1rem;
+            z-index: 2;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 1.5rem;
+            }
+            
+            .register-container h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-control {
+                padding: 0.7rem 1rem 0.7rem 2.2rem;
+            }
+            
+            .input-icon {
+                left: 0.8rem;
+                top: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/register">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm password" required>
+                <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Account Type</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="">Select your role</option>
+                    <option value="user">Regular User</option>
+                    <option value="seller">Product Seller</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">
+                <i class="fas fa-user-plus"></i> Register
+            </button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="/login"><i class="fas fa-sign-in-alt"></i> Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        
+        const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+        const confirmPassword = document.querySelector('#confirm_password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        toggleConfirmPassword.addEventListener('click', function() {
+            const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const role = document.getElementById('role').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                e.preventDefault();
+            }
+            
+            if (!role) {
+                alert('Please select an account type');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

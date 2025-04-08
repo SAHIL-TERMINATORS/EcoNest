@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Get in Touch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1b263b;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --error: #f72585;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .contact-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .contact-info {
+            flex: 1;
+            padding: 3rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: -30px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-item i {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin-right: 1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            flex: 1;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .submit-btn i {
+            margin-left: 8px;
+        }
+
+        .status-message {
+            margin-top: 1.5rem;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .success {
+            background: rgba(76, 201, 240, 0.2);
+            color: #0a9396;
+            border-left: 4px solid var(--success);
+            display: block;
+        }
+
+        .error {
+            background: rgba(247, 37, 133, 0.2);
+            color: var(--error);
+            border-left: 4px solid var(--error);
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Have a project in mind or want to discuss potential opportunities? Feel free to reach out - I'd love to hear from you!</p>
+            
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <span>sahiljouhari2004@gmail.com</span>
+            </div>
+            
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <span>+1 (123) 456-7890</span>
+            </div>
+            
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Agra,India</span>
+            </div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+                
+                <div class="status-message" id="statusMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending <span class="loading"></span>';
+            statusMessage.style.display = 'none';
+            
+            try {
+                const response = await fetch('/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Success
+                    statusMessage.className = 'status-message success';
+                    statusMessage.innerHTML = `
+                        <i class="fas fa-check-circle"></i> ${data.message || 'Message sent successfully!'}
+                    `;
+                    document.getElementById('contactForm').reset();
+                } else {
+                    // Error
+                    statusMessage.className = 'status-message error';
+                    statusMessage.innerHTML = `
+                        <i class="fas fa-exclamation-circle"></i> ${data.error || 'Failed to send message. Please try again.'}
+                    `;
+                }
+            } catch (error) {
+                statusMessage.className = 'status-message error';
+                statusMessage.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i> Network error. Please check your connection and try again.
+                `;
+            } finally {
+                statusMessage.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                
+                // Scroll to status message
+                statusMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+
+        // Add input animations
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-3px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our Eco Initiative | Plastic Transformation Project</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #81c784;
+            --primary-dark: #1b5e20;
+            --secondary: #ff8f00;
+            --text: #263238;
+            --text-light: #546e7a;
+            --bg: #f1f8e9;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .hero-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            clip-path: ellipse(100% 60% at 50% 30%);
+            z-index: -1;
+            animation: waveAnimation 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes waveAnimation {
+            0% { clip-path: ellipse(100% 60% at 50% 30%); }
+            100% { clip-path: ellipse(90% 55% at 50% 25%); }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 80px auto;
+            position: relative;
+        }
+
+        .about-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 60px;
+            transform: translateY(0);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mission-stats {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 25px;
+            margin: 10px;
+            background: rgba(129, 199, 132, 0.1);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(129, 199, 132, 0.2);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .eco-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-light);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(255, 143, 0, 0.1));
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 8s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+            100% { transform: scale(0.8); opacity: 0.8; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+
+        .eco-animation {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .leaf-1 {
+            top: 10%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .leaf-2 {
+            bottom: 15%;
+            right: 8%;
+            animation: float 8s ease-in-out infinite 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 40px auto;
+            }
+            
+            .about-card {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .mission-stats {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-wave"></div>
+    
+    <div class="container">
+        <div class="about-card">
+            <h1>About Our Plastic Eco Initiative</h1>
+            <p>We're revolutionizing waste management by empowering creators to transform plastic waste into beautiful, functional, and marketable products. Our platform bridges the gap between eco-conscious artisans and sustainability-minded consumers.</p>
+            
+            <div class="mission-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="plasticTransformed">0</div>
+                    <div class="stat-label">Pounds Transformed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="artisansSupported">0</div>
+                    <div class="stat-label">Artisans Supported</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="productsCreated">0</div>
+                    <div class="stat-label">Eco Products</div>
+                </div>
+            </div>
+            
+            <div class="eco-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3 class="feature-title">Circular Economy</h3>
+                    <p class="feature-desc">We close the loop on plastic waste by creating sustainable value chains that benefit both creators and the environment.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="feature-title">Community Empowerment</h3>
+                    <p class="feature-desc">We provide tools, training, and market access to help local artisans turn waste into livelihood opportunities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="feature-title">Sustainable Impact</h3>
+                    <p class="feature-desc">Every product sold represents plastic diverted from landfills and oceans, creating measurable environmental impact.</p>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <div class="cta-content">
+                    <h2>Join Our Movement</h2>
+                    <p>Whether you're a creator, buyer, or supporter, there's a place for you in our eco-revolution.</p>
+                    <a href="#" class="cta-button">Get Involved Today</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="eco-animation leaf-1">
+        <i class="fas fa-leaf" style="font-size: 100px; color: var(--primary);"></i>
+    </div>
+    <div class="eco-animation leaf-2">
+        <i class="fas fa-recycle" style="font-size: 100px; color: var(--secondary);"></i>
+    </div>
+    
+    <script>
+        // Animated counter for statistics
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Start animations when scrolled to
+        function startCounters() {
+            const position = document.querySelector('.mission-stats').getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if(position < screenPosition) {
+                animateValue("plasticTransformed", 0, 12500, 2000);
+                animateValue("artisansSupported", 0, 340, 1500);
+                animateValue("productsCreated", 0, 2800, 2500);
+                window.removeEventListener('scroll', startCounters);
+            }
+        }
+        
+        window.addEventListener('scroll', startCounters);
+        window.addEventListener('load', startCounters);
+        
+        // Parallax effect for hero wave
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const wave = document.querySelector('.hero-wave');
+            wave.style.transform = 'translateY(' + scrollPosition * 0.3 + 'px)';
+        });
+    </script>
+</body>
+</html>

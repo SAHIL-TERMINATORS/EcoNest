@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic-Free India - Success Stories</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4CAF50;
+            --accent-color: #8BC34A;
+            --dark-color: #1B5E20;
+            --light-color: #f4f4f4;
+            --text-color: #333;
+            --text-light: #f8f9fa;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease-in-out;
+            --border-radius: 12px;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* General styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            animation: fadeIn 0.8s ease-in-out;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            text-align: center;
+            animation: slideInUp 0.6s ease-in-out;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        nav ul li a i {
+            font-size: 0.9rem;
+        }
+
+        main {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #success-stories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        #success-stories h2 {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        #success-stories h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .story {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            animation: slideInUp 0.5s ease-in-out;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .story:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .story h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .story p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .story a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .story a:hover {
+            color: var(--dark-color);
+            text-decoration: underline;
+        }
+
+        .story a i {
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .story a:hover i {
+            transform: translateX(3px);
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav ul li a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            #success-stories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Special effects */
+        .highlight {
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(139, 195, 74, 0.1));
+            z-index: -1;
+            border-radius: var(--border-radius);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .highlight:hover::before {
+            opacity: 1;
+        }
+
+        .pulse-once {
+            animation: pulse 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plastic-Free India</h1>
+        <p>Join us in making India plastic-free!</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="{{ url_for('resources') }}"><i class="fas fa-book"></i> Resources</a></li>
+            <li><a href="{{ url_for('news') }}"><i class="fas fa-newspaper"></i> News</a></li>
+            <li><a href="{{ url_for('stories') }}" class="active"><i class="fas fa-star"></i> Stories</a></li>
+            <li><a href="{{ url_for('events') }}"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></li>
+            <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="success-stories">
+            <h2>Success Stories</h2>
+
+            <!-- Story 1 -->
+            <div class="story highlight">
+                <h3>Kannur: India's First Plastic-Free District</h3>
+                <p>Kannur district in Kerala successfully eliminated single-use plastics, becoming India's first plastic-free district in April 2017. The initiative involved phasing out single-use plastics, prohibiting their sale and purchase, and implementing strict monitoring of waste disposal.</p>
+                <a href="https://timesofindia.indiatimes.com/travel/destinations/heres-how-kannur-is-inspiring-india-to-go-plastic-free/articleshow/100748379.cms" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 2 -->
+            <div class="story highlight">
+                <h3>Jhunjhunu's Zero Plastic Waste Communities</h3>
+                <p>Over 70,000 eco-warriors from Jhunjhunu district in Rajasthan initiated a movement towards zero plastic waste communities, designing sustainable solutions for environmental challenges.</p>
+                <a href="https://piramalfoundation.org/zero-plastic-waste-communities-a-movement-led-by-70000-eco-warriors-from-jhunjhunu-district-in-rajasthan" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 3 -->
+            <div class="story highlight">
+                <h3>Eco Femme: Sustainable Menstrual Products</h3>
+                <p>Eco Femme, a women-led social enterprise in Tamil Nadu, produces organic washable cloth pads, promoting eco-friendly menstrual practices and reducing plastic waste.</p>
+                <a href="https://en.wikipedia.org/wiki/Eco_Femme" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 4 -->
+            <div class="story highlight">
+                <h3>Neera Naturals: Eco-Friendly Personal Care</h3>
+                <p>Neera Naturals, founded in 2021, offers handmade, eco-friendly, and sustainable bath and body products, integrating traditional Indian skincare practices with modern sustainability initiatives.</p>
+                <a href="https://en.wikipedia.org/wiki/Neera_Naturals" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 5 -->
+            <div class="story highlight">
+                <h3>Stree Mukti Sanghatana: Empowering Women Waste Pickers</h3>
+                <p>Stree Mukti Sanghatana, a Mumbai-based organization, works with women waste pickers to empower them and help them with financial inclusion and social security.</p>
+                <a href="https://www.weforum.org/stories/2023/08/how-india-is-coming-up-with-innovative-solutions-to-tackle-waste/" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 6 -->
+            <div class="story highlight">
+                <h3>India's Plastic Recycling Success</h3>
+                <p>India is witnessing a remarkable surge in the plastic recycling industry, transforming waste into wealth and presenting emerging opportunities.</p>
+                <a href="https://sharekhaneducation.com/blog/from-waste-to-wealth-indias-plastic-recycling-success-story/" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 7 -->
+            <div class="story highlight">
+                <h3>Earth5R's Plastic-Free Initiatives</h3>
+                <p>Earth5R's initiatives aim to raise awareness about plastic waste and promote sustainable practices. The organization focuses on community engagement and education to drive change.</p>
+                <a href="https://earth5r.org/" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Story 8 -->
+            <div class="story highlight">
+                <h3>Plastic Waste Management in India</h3>
+                <p>India's plastic waste management strategies are evolving, with a focus on reducing plastic consumption and promoting recycling. The government is implementing policies to tackle plastic pollution effectively.</p>
+                <a href="https://www.thehindu.com/sci-tech/energy-and-environment/plastic-waste-management-in-india/article66123495.ece" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Plastic-Free India. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Add pulse animation to stories when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const stories = document.querySelectorAll('.story');
+            
+            stories.forEach((story, index) => {
+                // Add delay to each story's animation
+                story.style.animationDelay = `${index * 0.1}s`;
+                
+                // Add hover class for highlight effect
+                story.addEventListener('mouseenter', function() {
+                    this.classList.add('pulse-once');
+                });
+                
+                // Remove animation after it completes to allow it to run again
+                story.addEventListener('animationend', function() {
+                    this.classList.remove('pulse-once');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

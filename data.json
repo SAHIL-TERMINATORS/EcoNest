@@ -1,0 +1,34 @@
+{
+    "plastic_uploads": [
+        {
+            "image": "uploads/OIP.jpeg"
+        },
+        {
+            "image": "uploads/OIP.jpeg"
+        },
+        {
+            "image": "uploads/OIP.jpeg"
+        },
+        {
+            "image": "uploads/download.jpeg"
+        }
+    ],
+    "nft_marketplace": [
+        {
+            "image": "uploads/jiji.jpeg",
+            "price": 10
+        },
+        {
+            "image": "uploads/jiji.jpeg",
+            "price": 10
+        },
+        {
+            "image": "uploads/jiji.jpeg",
+            "price": 10
+        },
+        {
+            "image": "uploads/OIP(1).jpeg",
+            "price": 15
+        }
+    ]
+}

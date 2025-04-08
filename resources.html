@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic-Free India - Resources</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4CAF50;
+            --accent-color: #8BC34A;
+            --dark-color: #1B5E20;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --section-padding: 2.5rem;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            from, 20%, 40%, 60%, 80%, to {
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            0% { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); }
+            20% { transform: scale3d(1.1, 1.1, 1.1); }
+            40% { transform: scale3d(0.9, 0.9, 0.9); }
+            60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
+            80% { transform: scale3d(0.97, 0.97, 0.97); }
+            to { opacity: 1; transform: scale3d(1, 1, 1); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        nav ul li a i {
+            font-size: 0.9rem;
+        }
+
+        /* Main content styles */
+        main {
+            padding: var(--section-padding) 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Section styles */
+        section {
+            background: white;
+            padding: 1.75rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            animation: bounceIn 1s both;
+        }
+
+        section:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        section img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.25rem;
+            display: block;
+            border: 4px solid var(--accent-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        section:hover img {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        section p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Button styles */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 500;
+            text-align: center;
+            margin: 1rem auto 0;
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            max-width: 200px;
+        }
+
+        .btn:hover {
+            background: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        /* Content row styles */
+        .content-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .content-box {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+            color: white;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .content-box:nth-child(1) { animation-delay: 0.2s; }
+        .content-box:nth-child(2) { animation-delay: 0.4s; }
+        .content-box:nth-child(3) { animation-delay: 0.6s; }
+
+        .content-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .content-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1.25rem;
+            border: 4px solid white;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .content-box:hover img {
+            transform: rotate(10deg);
+        }
+
+        .content-box h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .content-box p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        /* List styles */
+        ul {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            list-style-type: none;
+            padding-left: 1.75rem;
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        ul li strong {
+            color: var(--primary-color);
+        }
+
+        ul li a {
+            color: var(--text-light);
+            background: var(--secondary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        ul li a:hover {
+            background: var(--dark-color);
+        }
+
+        /* Footer styles */
+        .footer {
+            background: var(--dark-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .content-box {
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav ul li a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .content-row {
+                gap: 1.5rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-box {
+                min-width: 100%;
+            }
+            
+            .footer {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plastic-Free India</h1>
+        <p>Join us in making India plastic-free!</p>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="{{ url_for('resources') }}" class="active"><i class="fas fa-book"></i> Resources</a></li>
+                <li><a href="{{ url_for('news') }}"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="{{ url_for('stories') }}"><i class="fas fa-star"></i> Stories</a></li>
+                <li><a href="{{ url_for('events') }}"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="{{ url_for('upload') }}"><i class="fas fa-upload"></i> Upload</a></li>
+                <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></li>
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Resource 1 -->
+        <section>
+            <img src="{{ url_for('static', filename='uploads/ima.jpeg') }}" alt="Plastic Recycling Guide">
+            <h2>Guide to Plastic Recycling in India</h2>
+            <p>Understanding the guidelines and standards for plastic recycling is crucial for effective waste management. The Bureau of Indian Standards has issued comprehensive guidelines on how to recover and recycle plastic waste, detailing the types of products that can be manufactured from recycled plastics.</p>
+            <a href="https://law.resource.org/pub/in/bis/S11/is.14534.1998.pdf" class="btn" target="_blank">
+                <i class="fas fa-download"></i> Download Guide
+            </a>
+        </section>
+
+        <!-- Resource 2 -->
+        <section>
+            <img src="{{ url_for('static', filename='uploads/ima.jpeg') }}" alt="Eco-Friendly Brands">
+            <h2>Eco-Friendly Brands in India</h2>
+            <p>Supporting sustainable fashion brands contributes significantly to environmental conservation. Here are some notable Indian brands making strides in responsible fashion:</p>
+            <ul>
+                <li><strong>No Nasties</strong>: A fair trade, organic, and vegan clothing brand focused on creating planet-positive clothing by offsetting the carbon footprint of every product they make. <a href="https://www.nonasties.in/" target="_blank">Visit Site</a></li>
+                <li><strong>Sepia Stories</strong>: Designs and curates artisanal, handcrafted, organic, and sustainable men's and women's wear, blending Indian culture and tradition with a modern touch. <a href="https://sepiastories.in/" target="_blank">Visit Site</a></li>
+                <li><strong>I Was A Sari</strong>: Transforms used saris and deadstock fabrics into vibrant products, bringing traditional styles into the modern age. <a href="https://iwasasari.com/" target="_blank">Visit Site</a></li>
+            </ul>
+        </section>
+
+        <div class="content-row">
+            <div class="content-box">
+                <img src="{{ url_for('static', filename='uploads/oip.jpeg') }}" alt="Reduce Plastic Waste">
+                <h2>Reduce Plastic Waste</h2>
+                <p>Start by cutting down single-use plastics in your daily life. Use cloth bags, glass bottles, and biodegradable alternatives whenever possible.</p>
+            </div>
+            <div class="content-box">
+                <img src="{{ url_for('static', filename='uploads/oip.jpeg') }}" alt="Recycle & Reuse">
+                <h2>Recycle & Reuse</h2>
+                <p>Encourage recycling and upcycling to minimize environmental impact. Separate your waste correctly and support local recycling initiatives.</p>
+            </div>
+            <div class="content-box">
+                <img src="{{ url_for('static', filename='uploads/oip.jpeg') }}" alt="Spread Awareness">
+                <h2>Spread Awareness</h2>
+                <p>Educate others about the harmful effects of plastic pollution. Participate in campaigns, social media drives, and community clean-up events.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Contact Us: 20 St Thomas Street, London SE1 9RS | +44(0)208 0756 200 | info@cleanairfund.org</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2023 Plastic-Free India. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover class to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.classList.add('hover-effect');
+                });
+                section.addEventListener('mouseleave', function() {
+                    this.classList.remove('hover-effect');
+                });
+            });
+
+            // Animate content boxes when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.content-box').forEach(box => {
+                observer.observe(box);
+            });
+        });
+    </script>
+</body>
+</html>

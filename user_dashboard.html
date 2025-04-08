@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMarket Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #81c784;
+            --primary-dark: #1b5e20;
+            --secondary: #ff8f00;
+            --accent: #4361ee;
+            --dark: #263238;
+            --light: #f5f7fa;
+            --success: #4cc9f0;
+            --error: #f72585;
+            --warning: #ff9800;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-action i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .product-body {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn i {
+            margin-right: 5px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #e65100;
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d3165d;
+        }
+
+        /* Form Elements */
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .nav-link {
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-link i {
+            margin-right: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .quick-actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="user-info">
+            <div class="user-avatar">DU</div>
+            <div>
+                <h3>Welcome, DemoUser</h3>
+                <small class="text-muted">Member Account</small>
+            </div>
+        </div>
+        <div class="quick-actions">
+            <div class="quick-action">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart (2)</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-heart"></i>
+                <span>Wishlist (5)</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        <a href="#" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+        
+        <div class="product-actions">
+       <a href="add_to_cart.html" class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+       <a href="buy_now.html" class="btn btn-secondary btn-sm"><i class="fas fa-bolt"></i> Buy Now</a>
+       <a href="wishlist.html" class="btn btn-danger btn-sm"><i class="fas fa-heart"></i> Wishlist</a>
+</div>
+
+        <a href="{{ url_for('profile') }}" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="{{ url_for('logout') }}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title"><i class="fas fa-store"></i> Available Products</h2>
+            <div class="d-flex align-center">
+                <input type="text" class="form-control" placeholder="Search products..." style="width: 200px; margin-right: 10px;">
+                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.title }}" class="product-image">
+                <div class="product-body">
+                    <h4 class="product-title">{{ product.title }}</h4>
+                    <div class="product-price">₹{{ product.price }}</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="btn btn-secondary btn-sm"><i class="fas fa-bolt"></i> Buy Now</button>
+                        <button class="btn btn-danger btn-sm"><i class="fas fa-heart"></i> Wishlist</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        // Product card hover effect
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Quick actions hover effect
+        document.querySelectorAll('.quick-action').forEach(action => {
+            action.addEventListener('mouseenter', () => {
+                action.style.transform = 'translateY(-2px)';
+            });
+            action.addEventListener('mouseleave', () => {
+                action.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

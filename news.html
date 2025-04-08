@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic-Free India - Awareness Campaign</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4CAF50;
+            --accent-color: #8BC34A;
+            --dark-color: #1B5E20;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --card-radius: 16px;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        nav ul li a i {
+            font-size: 0.9rem;
+        }
+
+        /* Main content styles */
+        main {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Resource section styles */
+        #resources {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        #resources h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        #resources h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .resource-category {
+            margin-bottom: 2.5rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .resource-category h3 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .resource-category h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .resource-category ul {
+            list-style: none;
+        }
+
+        .resource-category li {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .resource-category li:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+            background-color: white;
+        }
+
+        .resource-category li a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-category li a:hover {
+            color: var(--dark-color);
+            text-decoration: underline;
+        }
+
+        .resource-category li a::after {
+            content: '\f08e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .resource-category p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Content boxes styles */
+        .content-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .content-box {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            padding: 2rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+            color: white;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .content-box:nth-child(1) { animation-delay: 0.2s; }
+        .content-box:nth-child(2) { animation-delay: 0.4s; }
+        .content-box:nth-child(3) { animation-delay: 0.6s; }
+
+        .content-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .content-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1.25rem;
+            border: 4px solid white;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .content-box:hover img {
+            transform: rotate(10deg);
+        }
+
+        .content-box h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: var(--dark-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+            margin: 0 0.5rem;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav ul li a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            #resources {
+                padding: 1.5rem;
+            }
+            
+            .resource-category li {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plastic-Free India</h1>
+        <p>Join us in making India plastic-free through awareness and action!</p>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('resources') }}" class="active"><i class="fas fa-book"></i> Resources</a></li>
+                <li><a href="{{ url_for('news') }}"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="{{ url_for('stories') }}"><i class="fas fa-star"></i> Stories</a></li>
+                <li><a href="{{ url_for('events') }}"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></li>
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Resources Section -->
+        <section id="resources">
+            <h2><i class="fas fa-book-open"></i> Awareness Resources</h2>
+    
+            <!-- Articles & PDFs Subsection -->
+            <div class="resource-category">
+                <h3><i class="fas fa-file-alt"></i> Articles & Research</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.outlookbusiness.com/opinions/plasticfree-india-a-collaborative-vision-for-a-sustainable-future-news-417750" target="_blank">
+                            Plastic-Free India: A Collaborative Vision
+                        </a>
+                        <p>Explores the collective efforts required to achieve a plastic-free India through government initiatives, corporate responsibility, and individual actions.</p>
+                    </li>
+                    <li>
+                        <a href="https://www.plasticsforchange.org/blog/india-emerges-as-the-worlds-largest-plastic-polluter-what-went-wrong-and-whats-next" target="_blank">
+                            India's Plastic Pollution Challenge
+                        </a>
+                        <p>Detailed analysis of the factors contributing to India's plastic pollution crisis and comprehensive solutions being implemented nationwide.</p>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- News Subsection -->
+            <div class="resource-category">
+                <h3><i class="fas fa-newspaper"></i> Latest News</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.hindustantimes.com/opinion/indias-successful-journey-towards-beating-plastic-pollution-a-year-of-bans-alternatives-and-ecoinnovation-101688136783729.html" target="_blank">
+                            India's Progress Against Plastic Pollution
+                        </a>
+                        <p>Reports on India's significant progress in reducing plastic pollution through innovative bans, sustainable alternatives, and grassroots eco-innovation.</p>
+                    </li>
+                    <li>
+                        <a href="https://apnews.com/article/science-india-new-delhi-climate-and-environment-d886865b46014c216878e52331145926" target="_blank">
+                            Single-Use Plastic Ban Implementation
+                        </a>
+                        <p>Coverage of India's nationwide implementation of bans on specific single-use plastic products and its environmental impact.</p>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Agreements Subsection -->
+            <div class="resource-category">
+                <h3><i class="fas fa-handshake"></i> Policy Agreements</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.wrap.ngo/taking-action/plastic-packaging/initiatives/collaborative-partnerships/india-plastics-pact" target="_blank">
+                            India Plastics Pact Details
+                        </a>
+                        <p>Comprehensive information about this collaborative initiative uniting businesses, governments, and NGOs to tackle plastic waste in India.</p>
+                    </li>
+                    <li>
+                        <a href="https://india.un.org/en/284549-global-treaty-end-plastic-pollution" target="_blank">
+                            Global Plastic Pollution Treaty
+                        </a>
+                        <p>Details on the international agreement addressing the complete life cycle of plastics, from production to disposal.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Call to Action Boxes -->
+        <div class="content-row">
+            <div class="content-box">
+                <img src="{{ url_for('static', filename='images/reduce-icon.png') }}" alt="Reduce Plastic">
+                <h2>Reduce Your Footprint</h2>
+                <p>Simple daily actions you can take to significantly reduce your plastic consumption and environmental impact.</p>
+                <button class="btn-action">Learn How</button>
+            </div>
+            <div class="content-box">
+                <img src="{{ url_for('static', filename='images/community-icon.png') }}" alt="Join Community">
+                <h2>Join Our Community</h2>
+                <p>Connect with like-minded individuals working towards a plastic-free India through local initiatives and events.</p>
+                <button class="btn-action">Get Involved</button>
+            </div>
+            <div class="content-box">
+                <img src="{{ url_for('static', filename='images/educate-icon.png') }}" alt="Educate Others">
+                <h2>Spread Awareness</h2>
+                <p>Resources and tools to help you educate your community about plastic pollution solutions.</p>
+                <button class="btn-action">Download Kit</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 Plastic-Free India. All rights reserved.</p>
+        <p>Contact us at <a href="mailto:info@plasticfreeindia.org">info@plasticfreeindia.org</a></p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/plasticfreeindia" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/plasticfreeindia" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/plasticfreeindia" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/plasticfreeindia" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/plasticfreeindia" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Smooth scrolling for navigation links
+            $('nav ul li a').on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 80
+                    }, 800, function() {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+
+            // Animate resource items as they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.resource-category').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add hover effect to resource items
+            $('.resource-category li').hover(
+                function() {
+                    $(this).css('transform', 'translateY(-5px)');
+                },
+                function() {
+                    $(this).css('transform', '');
+                }
+            );
+
+            // Button click handlers
+            $('.btn-action').click(function() {
+                const boxTitle = $(this).parent().find('h2').text();
+                alert(`Thank you for your interest in "${boxTitle}". You'll be redirected to more information.`);
+            });
+        });
+    </script>
+</body>
+</html>
