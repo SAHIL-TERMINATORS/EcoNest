@@ -1,4 +1,5 @@
 Flask
 Flask-MySQLdb
 Werkzeug
-mysqlclient
+
+mysqlclient>=2.0
